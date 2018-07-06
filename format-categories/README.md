@@ -13,9 +13,9 @@ The output list of objects is written to a file **testout.txt** with each object
   * _product_count_: 
   * _name_: Name of the category
   * _name_ar_:
-  * _tree_: Names of all parent categories and the current category joined using the character ' > ' . if no parent, leave current category name alone
+  * _tree_: Names of all parent categories and the current category joined using the character ' > ' . if no parent, current category name is used
   * _tree_ar_: Just like the tree attribute, but Arabic names
-  * _ids_: List of ids of all parent categories and the current category id, in hierarchical order. If no parent, leave current category id alone
+  * _ids_: List of ids of all parent categories and the current category id, in hierarchical order. If no parent, current category id is used 
   * _path_:
   
 The output file is created when the python file is executed.
