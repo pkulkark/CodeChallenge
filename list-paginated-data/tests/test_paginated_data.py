@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, '/home/pooja/CodeChallenge/list-paginated-data/src')
+sys.path.insert(0, '/home/poojakulkarni8691/CodeChallenge/list-paginated-data/src')
 
 import paginate
 import unittest

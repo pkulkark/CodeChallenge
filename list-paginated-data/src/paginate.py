@@ -20,7 +20,7 @@ def _fetch_user(username):
     db = MySQLdb.connect(host='localhost',
                          user='root',
                          passwd='random2words',
-                         db='kickdrum_test')
+                         db='esanjo_test')
     cur = db.cursor()
     cur.execute('select * from Users where username="%s";' % username)
     data = cur.fetchone()
@@ -36,7 +36,7 @@ def _insert_user(username, passwd):
     db = MySQLdb.connect(host='localhost',
                          user='root',
                          passwd='random2words',
-                         db='kickdrum_test')
+                         db='esanjo_test')
     cur = db.cursor()
     try:
         cur.execute('insert into Users(username, password) values ("%s", "%s");' %(username, passwd))
@@ -63,7 +63,7 @@ def _fetch_data(start_ind, num_recs):
     db = MySQLdb.connect(host='localhost',
                          user='root',
                          passwd='random2words',
-                         db='kickdrum_test')
+                         db='esanjo_test')
     cur = db.cursor()
     cur.execute('select * from categories limit %s, %s;' % (start_ind, num_recs))
     data = cur.fetchall()
