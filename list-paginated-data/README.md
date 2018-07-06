@@ -60,3 +60,25 @@ Then from a different terminal window you can send requests.
   On success a paginated list of objects is returned.
   On failure status code 401 (unauthorized) is returned.
 
+## Example
+The following curl command registers a new user with username `newuser1` and password `NewSecretPwd1`:
+```
+$ curl -X POST 'http://35.200.165.93:5000/users' -H 'Content-type: application/json' -d '{"username": "newuser1", "password": "NewSecretPwd1"}'
+{"message":"Successfully registered"}
+```
+These credentials can now be used to obtain auth-token
+```
+$ curl -u newuser1:NewSecretPwd1 -X GET 'http://35.200.165.93:5000/token'
+{"token":"eyJpYXQiOjE1MzA4NzYwNDksImV4cCI6MTUzMDg3OTY0OSwiYWxnIjoiSFMyNTYifQ.eyJ1c2VybmFtZSI6Im5ld3VzZXIxIn0.w2BYSc7zebs7YfPrZ0MEFIjrmlAxiCanGrUwcnKAhmU"}
+```
+Using the above token, following curl command returns a list of paginated data
+```
+$ curl -X GET 'http://35.200.165.93:5000/categories/v1/list?page=1&record=2' -H 'x-api-token: eyJpYXQiOjE1MzA4NzYwNDksImV4cCI6MTUzMDg3OTY0OSwiYWxnIjoiSFMyNTYifQ.eyJ1c2VybmFtZSI6Im5ld3VzZXIxIn0.w2BYSc7zebs7YfPrZ0MEFIjrmlAxiCanGrUwcnKAhmU'
+{"data":[{"ids":3,"is_active":"True","level":2,"name":"Fashion right now","name_ar":"?????? ????","objectID":3,"parentID":2,"path":"/fashion-right-now","position":1,"product_count":0,"tree":"Fashion right now","tree_ar":"?????? ????"},{"ids":4,"is_active":"True","level":2,"name":"Women","name_ar":"????","objectID":4,"parentID":2,"path":"/women","position":2,"product_count":404,"tree":"Women","tree_ar":"????"}],"pagination":{"page":1,"records":"2"}}
+```
+
+## Executing test cases
+The unit test cases can be found in `tests` directory. To execute them, use the command:
+```
+(venv) $ python3 test_paginated_data.py
+```
